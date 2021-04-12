@@ -12,7 +12,7 @@ node {
 		}
 	}
 
-	stage("allure report add") {
+	stage("02 allure report add") {
                 allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
                 }	
 }
