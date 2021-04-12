@@ -1,0 +1,21 @@
+node {
+	   stage('00 clean ws') {
+		   cleanWs()
+	   }
+
+	stage("01 github checkout"){
+		git 'https://github.com/xt4k/pipeExamples2'
+		}
+	stage('02 Run_Auto-Test (in_Gradle)') {
+		withGradle () {
+			sh './gradlew clean -Denv=remote2 test'
+		}
+	}
+
+	stage("allure report add") {
+                allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+                }
+	stage ("send notif to telegram") {
+		telegramSend(message: "BUILD_TAG: ${BUILD_TAG} completed scriptedly", chatId: -1001424392176)
+        }
+}
