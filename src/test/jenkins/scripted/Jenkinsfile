@@ -8,7 +8,7 @@ node {
 		}
 	stage('02 Run_Auto-Test (in_Gradle)') {
 		withGradle () {
-			sh './gradlew clean -Denv=remote2 test'
+			sh 'gradle clean -Denv=remote2 test'
 		}
 	}
 	stage("03 allure report add") {
