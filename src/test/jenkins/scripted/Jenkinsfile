@@ -7,11 +7,9 @@ node {
 		git 'https://github.com/xt4k/pipeExamples2'
 		}
 	stage('02 Run_Auto-Test (in_Gradle)') {	
-		sh 'cd /var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle7/bin/gradle'
+		sh '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle7/bin/gradle gradle -v'
 	}
-	stage('03 Run_Auto-Test (in_Gradle)') {	
-		sh 'gradlew -Denv=remote2 clean test'
-	}
+
 	stage("03 allure report add") {
                 allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
                 }	
