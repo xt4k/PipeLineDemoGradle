@@ -1,5 +1,5 @@
 node {
-	def gradleHome = '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle7/bin/gradle'
+	def gradleHome = '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle7'
 	   stage('00 clean ws') {
 		   cleanWs()
 	   }
@@ -9,7 +9,7 @@ node {
 	}
 	stage('02 Run_Auto-Test (in_Gradle)') {	
 		// sh "'${gradleHome}/bin/gradle' clean compileJava test"
-		sh '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle7/bin/ gradle -Denv=remote2 clean test'
+		sh '${gradleHome}/bin/gradle -Denv=remote2 clean test'
 	}	
 
 	stage("03 allure report add") {
