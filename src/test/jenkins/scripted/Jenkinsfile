@@ -9,7 +9,7 @@ node {
 	}
 	stage('02 Run_Auto-Test (in_Gradle)') {	
 		// sh "'${gradleHome}/bin/gradle' clean compileJava test"
-		sh '${gradleHome}/bin/gradle -Denv=remote2 clean test'
+		sh "'${gradleHome}/bin/gradle' -Denv=remote2 clean test"
 	}	
 
 	stage("03 allure report add") {
