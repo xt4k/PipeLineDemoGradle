@@ -8,7 +8,7 @@ node {
 		}
 	stage('02 Run_Auto-Test (in_Gradle)') {
 		withGradle () {
-			sh '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle7/bin/gradle clean -Denv=remote2 test'
+			sh '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle7/bin/gradle -Denv=remote2 clean test'
 		}
 	}
 	stage("03 allure report add") {
