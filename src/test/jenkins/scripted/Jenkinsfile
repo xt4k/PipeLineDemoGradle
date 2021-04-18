@@ -12,8 +12,7 @@ node {
 		// sh "'${gradleHome}/bin/gradle' clean compileJava test"
 		//sh "'${gradleHome}/bin/gradle' --info -Denv=remote2 clean test"
 		//sh "./gradlew --info -Denv=remote2 clean test"
-		sh "cd '${WORKSPACE}'
-			 ./gradlew --info -Denv=remote2 clean test"
+		sh "'${WORKSPACE}'/gradlew --info -Denv=remote2 clean test"
 		 }
 	//}	
 
