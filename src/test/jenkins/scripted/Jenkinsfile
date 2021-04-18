@@ -24,7 +24,7 @@ node {
 		///echo "${projectVersion}"
 		 }		
 	stage('05 Run_Auto-Test (in_Gradle)') {	
-		 dir('sub-dir') {sh './gradlew clean build'}
+		dir('${gradle6.8.2}') {sh './gradlew clean build'}
 		// withGradle {
 		// sh "'${gradleHome}/bin/gradle' clean compileJava test"
 		//sh "'${gradleHome}/bin/gradle' --info -Denv=remote2 clean test"
