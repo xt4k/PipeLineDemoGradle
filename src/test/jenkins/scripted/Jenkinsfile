@@ -1,5 +1,7 @@
 node {
 	//def gradleHome = '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle7'
+	def projectVersion = sh script: "gradle getVersion()", returnStdout: true
+	def projectGroup= sh script: "gradle getGroup()", returnStdout: true
 	   stage('00 clean ws') {
 		   cleanWs()
 	   }
@@ -14,6 +16,7 @@ node {
 		//sh "./gradlew --info -Denv=remote2 clean test"
 		//sh "ls '${WORKSPACE}' "
 		sh "ls"
+		echo "${projectVersion}"
 		 }		
 	stage('05 Run_Auto-Test (in_Gradle)') {	
 		 withGradle {
