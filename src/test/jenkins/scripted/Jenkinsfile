@@ -9,6 +9,7 @@ node {
 
 	stage("01 github checkout"){
 		git 'https://github.com/xt4k/pipeExamples2'
+		sh 'ls'
 	}
 	stage('03 show me more') {	
 		def projectVersion = sh "gradle getVersion"
@@ -19,15 +20,16 @@ node {
 		//sh "./gradlew --info -Denv=remote2 clean test"
 		//sh "ls '${WORKSPACE}' "
 		sh "ls"
-		echo "${projectVersion}"
+		///echo "${projectVersion}"
 		 }		
 	stage('05 Run_Auto-Test (in_Gradle)') {	
-		 withGradle {
+		 dir('sub-dir') {sh './gradlew clean build'}
+		// withGradle {
 		// sh "'${gradleHome}/bin/gradle' clean compileJava test"
 		//sh "'${gradleHome}/bin/gradle' --info -Denv=remote2 clean test"
 		//sh "./gradlew --info -Denv=remote2 clean test"
-		sh "gradle --info -Denv=remote2 clean test"
-		 }
+	//	sh "gradle --info -Denv=remote2 clean test"
+	//	 }
 	}	
 
 	stage("03 allure report add") {
