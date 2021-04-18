@@ -1,35 +1,25 @@
 node {
-	//def gradleHome = '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle7'	
 	def gradleHome = '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle6.8.2'	
-	 def path = tool name: 'GRADLE6_HOME', type: 'gradle'	
-	
+	def path = tool name: 'GRADLE6_HOME', type: 'gradle'		
 	   stage('00 clean ws') {		 //  cleanWs()
 		   cleanWs disableDeferredWipeout: true, deleteDirs: true
 	   }
 
 	stage("01 github checkout"){
-		git 'https://github.com/xt4k/pipeExamples2'
-		sh 'ls'
+		git 'https://github.com/xt4k/pipeExamples2'		
 	}
-	stage('03 show me more') {	
-		//def projectVersion = sh "gradle getVersion"
-		//def projectGroup= sh "gradle getGroup"		 
-		// sh "'${gradleHome}/bin/gradle' clean compileJava test"
-		//sh "'${gradleHome}/bin/gradle' --info -Denv=remote2 clean test"
-		//sh "./gradlew --info -Denv=remote2 clean test"
-		//sh "ls '${WORKSPACE}' "
-		sh "ls"
-		///echo "${projectVersion}"
-		 }		
+	
+	stage('03 show me more') {
+		sh "ls"		
+	}
+	
 	stage('05 Run_Auto-Test (in_Gradle)') {	
-		sh "${path}/gradle  -Denv=remote2 clean test"	
-		//dir('${gradle6.8.2}') {sh './gradlew clean build'}
-		// withGradle {
-		// sh "'${gradleHome}/bin/gradle' clean compileJava test"
-		//sh "'${gradleHome}/bin/gradle' --info -Denv=remote2 clean test"
-		//sh "./gradlew --info -Denv=remote2 clean test"
-	//	sh "gradle --info -Denv=remote2 clean test"
-	//	 }
+		withGradle(gradle: "GRADLE6_HOME", 
+			   JDK: "jdk1.8",
+			   gradleProperties: "gradle.properties",
+			   gradleCacheDir: ".gradle/caches/") {
+				sh "gradle -Denv=remote2 clean test"
+			}		
 	}	
 
 	stage("03 allure report add") {
