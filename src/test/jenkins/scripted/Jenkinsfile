@@ -11,8 +11,8 @@ node {
 		git 'https://github.com/xt4k/pipeExamples2'
 	}
 	stage('03 show me more') {	
-		def projectVersion = sh "gradle getVersion()"
-		def projectGroup= sh "gradle getGroup()"
+		def projectVersion = sh "gradle getVersion"
+		def projectGroup= sh "gradle getGroup"
 		 
 		// sh "'${gradleHome}/bin/gradle' clean compileJava test"
 		//sh "'${gradleHome}/bin/gradle' --info -Denv=remote2 clean test"
