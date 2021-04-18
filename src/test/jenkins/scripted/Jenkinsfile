@@ -1,7 +1,5 @@
 node {
-	//def gradleHome = '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle7'
-	def projectVersion = sh script: "gradle getVersion()", returnStdout: true
-	def projectGroup= sh script: "gradle getGroup()", returnStdout: true
+	//def gradleHome = '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle7'	
 	   stage('00 clean ws') {
 		   cleanWs()
 	   }
@@ -10,6 +8,8 @@ node {
 		git 'https://github.com/xt4k/pipeExamples2'
 	}
 	stage('03 show me more') {	
+		def projectVersion = sh script: "gradle getVersion()", returnStdout: true
+	def projectGroup= sh script: "gradle getGroup()", returnStdout: true
 		 
 		// sh "'${gradleHome}/bin/gradle' clean compileJava test"
 		//sh "'${gradleHome}/bin/gradle' --info -Denv=remote2 clean test"
