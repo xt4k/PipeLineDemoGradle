@@ -1,10 +1,9 @@
 node {
 	//def gradleHome = '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle7'	
 	def gradleHome = '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle6.8.2'	
+	 def path = tool name: 'GRADLE7_HOME', type: 'gradle'	
 	
-	
-	   stage('00 clean ws') {
-		 //  cleanWs()
+	   stage('00 clean ws') {		 //  cleanWs()
 		   cleanWs disableDeferredWipeout: true, deleteDirs: true
 	   }
 
@@ -13,9 +12,8 @@ node {
 		sh 'ls'
 	}
 	stage('03 show me more') {	
-		def projectVersion = sh "gradle getVersion"
-		def projectGroup= sh "gradle getGroup"
-		 
+		//def projectVersion = sh "gradle getVersion"
+		//def projectGroup= sh "gradle getGroup"		 
 		// sh "'${gradleHome}/bin/gradle' clean compileJava test"
 		//sh "'${gradleHome}/bin/gradle' --info -Denv=remote2 clean test"
 		//sh "./gradlew --info -Denv=remote2 clean test"
@@ -24,7 +22,8 @@ node {
 		///echo "${projectVersion}"
 		 }		
 	stage('05 Run_Auto-Test (in_Gradle)') {	
-		dir('${gradle6.8.2}') {sh './gradlew clean build'}
+		sh "${path}/gradle  -Denv=remote2 clean test"	
+		//dir('${gradle6.8.2}') {sh './gradlew clean build'}
 		// withGradle {
 		// sh "'${gradleHome}/bin/gradle' clean compileJava test"
 		//sh "'${gradleHome}/bin/gradle' --info -Denv=remote2 clean test"
