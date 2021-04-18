@@ -4,7 +4,8 @@ node {
 	
 	
 	   stage('00 clean ws') {
-		   cleanWs()
+		 //  cleanWs()
+		   cleanWs disableDeferredWipeout: true, deleteDirs: true
 	   }
 
 	stage("01 github checkout"){
