@@ -1,5 +1,5 @@
 node {
-	def gradleHome = '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle7'
+	//def gradleHome = '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle7'
 	   stage('00 clean ws') {
 		   cleanWs()
 	   }
