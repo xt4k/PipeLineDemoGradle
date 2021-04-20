@@ -1,5 +1,5 @@
 node {
-	def gradleHome = '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle6.8.2'	
+	//def gradleHome = '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle6.8.2'	
 	//def path = tool name: 'GRADLE6_HOME', type: 'gradle'		
 	   stage('00 clean ws') {		 //  cleanWs()
 		   cleanWs disableDeferredWipeout: true, deleteDirs: true
