@@ -14,11 +14,8 @@ node {
 	}
 	
 	stage('05 Run_Auto-Test (in_Gradle)') {	
-		withGradle(gradle: "GRADLE6_HOME", 
-			   JDK: "jdk1.8",
-			   gradleProperties: "gradle.properties",
-			   gradleCacheDir: ".gradle/caches/") {
-				sh "gradle -Denv=remote2 clean test"
+		withGradle() {
+				sh './gradlew -Denv=remote2 clean test'
 			}		
 	}	
 
