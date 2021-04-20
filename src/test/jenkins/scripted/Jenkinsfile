@@ -14,7 +14,9 @@ node {
 	}
 	
 	stage('05 Run_Auto-Test (in_Gradle)') {	
-		sh "./gradlew clean test"
+		 withAllureUpload(name: '${JOB_NAME} - #${BUILD_NUMBER}', projectId: '997', results: [[path: 'build/allure-results']], serverId: 'allure-server', tags: 'ni') {
+                    sh "./gradlew -Denv=remote2 clean test"
+                } 
 				//sh './gradlew -Denv=remote2 clean test'			
 	}	
 
