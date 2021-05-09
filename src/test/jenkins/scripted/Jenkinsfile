@@ -15,7 +15,7 @@ node {
 	
 	stage('05 Run_Auto-Test (in_Gradle)') {	
 		 withGradle() {
-                    sh "gradle -Denv=remote2 clean test"
+			 sh "${BUILD}/gradlew -Denv=remote2 clean test"
                 } 				//sh './gradlew -Denv=remote2 clean test'			
 	}	
 
