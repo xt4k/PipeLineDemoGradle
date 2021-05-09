@@ -14,13 +14,18 @@ pipeline {
 		    }
 	    }
 	    
-	    stage('02a Run_Auto-Test (in_Gradle)') {
+	    	stage('02 show me more') {
+		sh 'ls'	
+	}
+	    
+	    stage('03 Run_Auto-Test (in_Gradle)') {
 		    steps{
 			    withGradle() {
 				    sh "./gradlew -Denv=remote2 clean test"  
 			    } //sh './gradlew -Denv=remote2 clean test'
 		    }
 	    }
+	    
 /*
 	    stage('02 run auto-test_in_Maven') {
 		    steps {
