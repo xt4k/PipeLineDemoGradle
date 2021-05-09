@@ -10,17 +10,25 @@ pipeline {
 
 	    stage("01 git checkout"){
 		    steps {
-			    git 'https://github.com/xt4k/pipeExamples2'
+			    git 'https://github.com/xt4k/PipeLineDemoGradle'//pipeExamples2'
 		    }
 	    }
-
+	    
+	    stage('02a Run_Auto-Test (in_Gradle)') {
+		    steps{
+			    withGradle() {
+				    sh "./gradlew -Denv=remote2 clean test"  
+			    } //sh './gradlew -Denv=remote2 clean test'
+		    }
+	    }
+/*
 	    stage('02 run auto-test_in_Maven') {
 		    steps {
 			    withMaven( globalMavenSettingsConfig: '2115a339-7bf0-4a98-8e0c-6e2742b17571',jdk: 'jdk-8', maven: 'maven') {
 				    sh 'mvn -Dbrowser=chrome  -Dmaven.test.failure.ignore -Dsuite=common clean test'
 			    }
 		    }
-	    }
+	    }*/
 
 	    stage("allure report add") {
 		    steps{
