@@ -18,16 +18,15 @@ pipeline {
 		sh 'ls'	
 		    }
 	}
-	    
-	    stage('03 Run_Auto-Test (in_Gradle)') {
-		    steps {			   
-				    sh "./gradlew -Denv=remote2 clean test"  			  
-		    }
-	    }
-	    
-
-	    stage("allure report add") {
-		    steps{
+	
+	stage('03 Run_Auto-Test (in_Gradle)') {
+		    steps {
+		    	sh './gradlew -Denv=remote2 clean test'
+		}
+	}
+	
+	stage("allure report add") {
+		steps {
 			    allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
 		    }
 	    }
