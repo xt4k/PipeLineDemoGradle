@@ -10,15 +10,17 @@ node {
 	}
 	
 	stage('03 show me more') {
-		sh 'cd ${BUILD}'		
+		sh 'echo ${BUILD}'		
 	}
 	
 	stage('04 show me more') {
 		sh 'ls'	
 	}
 	
-	stage('05 Run_Auto-Test (in_Gradle)') {			// withGradle() {
-			 sh "./gradlew -Denv=remote2 clean test"              //  } //sh './gradlew -Denv=remote2 clean test'
+	stage('05 Run_Auto-Test (in_Gradle)') {	
+		withGradle() {
+			 sh "./gradlew -Denv=remote2 clean test"  
+			  } //sh './gradlew -Denv=remote2 clean test'
 	}	
 
 	stage("03 allure report add") {
