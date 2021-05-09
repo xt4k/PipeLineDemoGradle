@@ -14,8 +14,10 @@ pipeline {
 		    }
 	    }
 	    
-	    	stage('02 show me more') {
+	    stage('02 show me more') {
+		    steps {
 		sh 'ls'	
+		    }
 	}
 	    
 	    stage('03 Run_Auto-Test (in_Gradle)') {
