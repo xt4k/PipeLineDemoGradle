@@ -44,7 +44,9 @@ pipeline {
 
         stage('05 Run_Auto-Test (in_Gradle)') {
             steps {
+            withGradle {
                 sh './gradlew -Denv=remote2 clean test'
+                }
             }
         }
 
