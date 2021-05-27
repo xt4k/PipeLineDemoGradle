@@ -16,7 +16,7 @@ pipeline {
 
         stage('02 show me more') {
             steps {
-                sh 'ls'
+                sh 'git update-index --chmod=+x gradlew'
             }
         }
 
