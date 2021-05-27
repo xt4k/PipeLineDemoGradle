@@ -1,5 +1,6 @@
 package helpers;
 
+import com.codeborne.selenide.Configuration;
 import config.WebConfig;
 import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -27,6 +28,7 @@ public class BaseTest {
         browserVersion = config.getBrowserVersion( );
         startMaximized = true;
         baseUrl = config.getBaseUrl( );
+        headless=false;
         DesiredCapabilities capabilities = new DesiredCapabilities( );
         capabilities.setCapability("enableVNC", config.isEnableVnc( ));
         capabilities.setCapability("enableVideo", config.isEnableVideo( ));

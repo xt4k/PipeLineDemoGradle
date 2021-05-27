@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+    tool name: 'GRADLE6_HOME', type: 'gradle'
+    stages {
+        stage('clean ws') {
+            steps {
+                cleanWs()
+            }
+        }
+
+        stage("01 git checkout"){
+            steps {
+                git 'https://github.com/xt4k/PipeLineDemoGradle'//pipeExamples2'
+            }
+        }
+
+        stage('02 show me more') {
+            steps {
+                sh 'ls'
+            }
+        }
+
+        stage('03 Run_Auto-Test (in_Gradle)') {
+            steps {
+                sh './gradlew -Denv=remote2 clean test'
+            }
+        }
+
+        stage("allure report add") {
+            steps {
+                allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+            }
+        }
+
+        stage ("send notif to telegram") {
+            steps {
+                telegramSend(message: "BUILD_TAG: ${BUILD_TAG} completed22", chatId: -1001424392176)
+            }
+        }
+    }
+}
