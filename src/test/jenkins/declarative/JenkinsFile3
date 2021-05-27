@@ -1,6 +1,9 @@
 pipeline {
     agent any
-    tools {gradle 'GRADLE6_HOME'}
+    tools {
+        gradle 'GRADLE6_HOME'
+        jdk 'jdk-8'
+    }
 
     stages {
 
