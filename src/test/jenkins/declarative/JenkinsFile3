@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    tool name: 'GRADLE6_HOME', type: 'gradle'
+    tools {gradle 'GRADLE6_HOME'}
     stages {
         stage('clean ws') {
             steps {
