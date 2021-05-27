@@ -12,7 +12,7 @@ pipeline {
 
         stage("01 git checkout"){
             steps {
-                git 'https://github.com/xt4k/PipeLineDemoGradle'//pipeExamples2'
+                git 'https://github.com/xt4k/PipeLineDemoGradle'
             }
         }
 
@@ -24,15 +24,20 @@ pipeline {
 
        stage('03 permissions') {
                         	steps {
-                        		            		sh 'git ls-tree HEAD'
-                        	 }
+                        	sh 'git ls-tree HEAD'
+                        	}
                 }
 
         stage('04') {
             steps {
-                sh 'git update-index --chmod=+x gradlew'
-            }
-        }
+                sh 'git update-index --chmod=+x script.sh'
+              sh 'git status'
+              sh 'git commit -m "Changing file permissions"'
+              	sh 'git ls-tree HEAD'
+                    }
+                }
+
+
 
         stage('05 Run_Auto-Test (in_Gradle)') {
             steps {
