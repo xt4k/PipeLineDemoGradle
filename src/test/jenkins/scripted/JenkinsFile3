@@ -1,21 +1,33 @@
 node {
 	//def gradleHome = '/var/lib/jenkins/tools/hudson.plugins.gradle.GradleInstallation/gradle6.8.2'	
-	//def path = tool name: 'GRADLE6_HOME', type: 'gradle'		
-	   stage('00 clean ws') {		 //  cleanWs()
-		   cleanWs disableDeferredWipeout: true, deleteDirs: true
-	   }
+	tool name: 'GRADLE6_HOME', type: 'gradle'
+	tool name: 'jdk-8', type: 'jdk'
 
-	stage("01 github checkout"){
+	stage('00 clean ws') {
+	   cleanWs disableDeferredWipeout: true, deleteDirs: true
+	}
+
+	stage('01 github checkout'){
 		git 'https://github.com/xt4k/PipeLineDemoGradle'		
 	}	
-	
+
+
+   stage('02 dir ops') {
+                		sh 'ls'
+                        sh 'git ls-tree HEAD'
+                        sh 'git update-index --chmod=+x gradlew'
+                        sh 'git status'
+                        sh 'git commit -m "Changing file permissions"'
+                        sh 'git ls-tree HEAD'
+                }
+
 	stage('05 Run_Auto-Test (in_Gradle)') {	
 		withGradle() {
 			 sh './gradlew -Denv=remote2 clean test'
-			  } //sh './gradlew -Denv=remote2 clean test'
+			  }
 	}	
 
-	stage("03 allure report add") {
+	stage('06 allure report add') {
 		allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
 	}	
 }
