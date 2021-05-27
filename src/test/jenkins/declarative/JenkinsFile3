@@ -30,7 +30,7 @@ pipeline {
 
         stage('04') {
             steps {
-                sh 'git update-index --chmod=+x script.sh'
+                sh 'git update-index --chmod=+x gradlew'
               sh 'git status'
               sh 'git commit -m "Changing file permissions"'
               	sh 'git ls-tree HEAD'
